@@ -1,0 +1,5 @@
+env/
+__pycache__/
+*.log
+portsi_report_*.pdf
+.DS_Store
