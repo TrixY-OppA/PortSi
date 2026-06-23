@@ -1,6 +1,20 @@
-# VulnScanner - Professional Vulnerability Assessment Tool
+# PortSi - Professional Vulnerability Assessment Tool
 
-A production-grade vulnerability scanner demonstrating clean architecture, comprehensive security analysis, and executive-level reporting.
+PortSi is a high-performance, production-hardened network security auditing tool developed in Python. It combines multi-layered socket scanning capabilities with real-time National Vulnerability Database (NVD) API intelligence to generate comprehensive baseline perimeter defense assessments.
+
+A vulnerability scanner demonstrating clean architecture, comprehensive security analysis, and executive-level reporting.
+
+## Key Features
+* **Adaptive Scanning Delay:** Built-in rate limiting (0.1s to 0.2s connection pacing) to ensure fast socket scans do not trigger network firewalls or simulate Denial of Service (DoS) attack structures on live enterprise assets.
+* **Resilient Threat Intel:** Deep integration with the NVD API featuring structured try-except blocks, graceful HTTP 424/429 rate-limit handling, exponential backoff, and clean warnings instead of execution crashes.
+* **Automated Report Generation:** Compiles findings instantly into professional, production-ready PDF vulnerability logs using ReportLab templates with automated HTML/XML escaping to handle raw API responses safely.
+
+## Architecture & Tech Stack
+* **Core Language:** Python 3.12+ (Fully typed with strict Type Hints)
+* **Network Auditing:** `nmap` binaries & `python-nmap` integration
+* **Reporting Engine:** `reportlab` with customized flowables and defensive styling
+* **API Integrations:** `requests` with dynamic query management
+
 
 ## Architecture Overview
 
@@ -90,33 +104,61 @@ A production-grade vulnerability scanner demonstrating clean architecture, compr
   - Graceful error handling
   - Detailed logging with timestamps
 
-## Setup & Installation
 
-### Prerequisites
-- macOS with Homebrew
-- Python 3.12.4+ with venv
-- Nmap (installed via Homebrew)
+### Virtual Environment Setup & Dependency Installation
 
-### Virtual Environment Setup
+#### MacOS Setup
 ```bash
 # Activate existing virtual environment
 source env/bin/activate
 
 # Verify Python version
-python --version  # Should be 3.12.4
-```
+python --version # Should be 3.12.4
 
-### Install Dependencies
-```bash
+# Install Dependencies
 pip install --upgrade pip
 pip install nmap requests pillow reportlab
+
+# Verify Nmap Installation
+which nmap
+nmap --version # Should show 7.x or later
 ```
 
-### Verify Nmap Installation
+#### Windows Setup
 ```bash
-which nmap
-nmap --version  # Should show 7.x or later
+# Activate existing virtual environment
+call env\Scripts\activate
+
+# Verify Python version
+python --version
+
+# Install Dependencies
+python -m pip install --upgrade pip
+pip install nmap requests pillow reportlab
+
+# Verify Nmap Installation
+where nmap
+nmap --version
 ```
+
+#### Linux Setup
+```bash
+# Activate existing virtual environment
+source env/bin/activate
+
+# Verify Python version
+python3 --version
+
+# Install Dependencies
+pip install --upgrade pip
+pip install nmap requests pillow reportlab
+
+# Verify Nmap Installation
+which nmap
+nmap --version
+```
+
+---
 
 ## Usage
 
@@ -176,7 +218,7 @@ python main.py --target example.com
 │  CVE DETAILS                        │
 │  CVE-2021-44228    │  10.0 │CRITICAL│
 │  CVE-2021-3129     │  9.8  │CRITICAL│
-│       ...          │ ...   │ ...    │
+│       ...          │  ...  │  ...   │
 └─────────────────────────────────────┘
 ```
 
