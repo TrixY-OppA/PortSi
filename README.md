@@ -107,7 +107,7 @@ A vulnerability scanner demonstrating clean architecture, comprehensive security
 
 ### Virtual Environment Setup & Dependency Installation
 
-#### MacOS Setup
+####  MacOS Setup
 ```bash
 # Activate existing virtual environment
 source env/bin/activate
